@@ -1,0 +1,32 @@
+.county-search {
+  width: 300px;
+  position: relative;
+
+  input {
+    width: 285px;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  ul {
+    border-radius: 8px;
+    padding: 0px;
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    max-height: 150px;
+    overflow-y: auto;
+
+    li {
+      padding: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+  }
+}

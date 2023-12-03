@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import StateSearch from './components/StateSearch/StateSearch';
+import StateMap from './components/StateMap/StateMap';
+import './App.scss';
+import Typography from './components/Typography/Typography';
+import CountySearch from './components/CountySearch/CountySearch';
 
-function App() {
+const YourMainComponent: React.FC = () => {
+  const [selectedState, setSelectedState] = useState<string>('');
+  const [selectedCounty, setSelectedCounty] = useState<string>('');
+
+  const handleSelectState = (state: string) => {
+    setSelectedState(state);
+  };
+
+  const handleSelectCounty = (county: string) => {
+    setSelectedCounty(county);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-container">
+      <div className='title'>
+        {selectedState && (
+          <Typography variant="h1">Showing {selectedState} {`with ${selectedCounty} county`}</Typography>
+        )}
+      </div>
+      <div className='search-boxes'>
+        <StateSearch onSelectState={handleSelectState} />
+        {selectedState !== '' && (
+          <CountySearch selectedState={selectedState} onSelectCounty={handleSelectCounty} />
+        )}
+      </div>
+      <StateMap selectedState={selectedState} selectedCounty={selectedCounty}/>
     </div>
   );
-}
+};
 
-export default App;
+export default YourMainComponent;
